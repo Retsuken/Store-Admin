@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>admin</title>
+  <link rel="stylesheet" href="/static/styles/style.css">
+  <link rel="stylesheet" href="/static/styles/adaptive.css">
+  <link rel="icon" href="/static/img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var checkBoxes = document.querySelectorAll('input[name="status"]');
+  
+  checkBoxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      var selectedStatuses = [...checkBoxes].filter(cb => cb.checked).map(cb => cb.value);
+      
+      // Отправка выбранных статусов на сервер (например, в URL)
+      var params = new URLSearchParams();
+      selectedStatuses.forEach(status => {
+        params.append('status', status);
+      });
+      
+      var url = window.location.pathname + '?' + params.toString();
+      window.location.href = url;
+    });
+    
+    // Восстановление состояния из URL при загрузке страницы
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('status')) {
+      var statusParams = urlParams.getAll('status');
+      if (statusParams.includes(checkbox.value)) {
+        checkbox.checked = true;
+        checkbox.parentNode.classList.add('checked');
+      }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var accordionBtn = document.querySelector('.accordion');
+  var checkboxes = document.querySelectorAll('.checkbox');
+
+  accordionBtn.addEventListener('click', function() {
+    checkboxes.forEach(function(checkbox) {
+      var productCity = checkbox.getAttribute('data-city');
+      if (productCity === accordionBtn.getAttribute('data-city')) {
+        checkbox.style.display = 'block';
+      } else {
+        checkbox.style.display = 'none';
+      }
+    });
+  });
+});
+function submitForm() {
+  var form = document.getElementById('filterForm');
+  form.submit();
+}
+
+var accordion = document.querySelector('.accordion');
+var panel = document.querySelector('.panel');
+var checkboxes = document.querySelectorAll('.custom-checkbox');
+
+accordion.addEventListener('click', function(event) {
+  event.preventDefault();
+  panel.classList.toggle('active');
+});
+
+function filterProducts() {
+  submitForm();
+}
+
+function submitForm1() {
+  var form = document.getElementById('filterForm1');
+  form.submit();
+}
+
+var accordion = document.querySelector('.accordion');
+var panel = document.querySelector('.panel');
+var checkboxes = document.querySelectorAll('.custom-checkbox');
+
+accordion.addEventListener('click', function(event) {
+  event.preventDefault();
+  panel.classList.toggle('active');
+});
+
+function filterProducts1() {
+  submitForm1();
+}
+
+checkboxes.forEach(function(checkbox) {
+  checkbox.addEventListener('click', function(event) {
+    event.stopPropagation();
+    filterProducts();
+  });
+});
+  function filterProducts1() {
+  submitForm1(); // Вызываем функцию для фильтрации при изменении выбора чекбокса
+}
+
+function submitForm2() {
+  var form = document.getElementById('filterForm2');
+  form.submit();
+}
+
+var accordion = document.querySelector('.accordion');
+var panel = document.querySelector('.panel');
+var checkboxes = document.querySelectorAll('.custom-checkbox');
+
+accordion.addEventListener('click', function(event) {
+  event.preventDefault();
+  panel.classList.toggle('active');
+});
+
+function filterProducts2() {
+  submitForm2();
+}
+
+  </script>
+  <style>
+        .section-lk-container-left-bottom {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+    .accordion:after {
+      content: url("/static/img/chevron-down.svg");
+    }
+    .circle {
+          width: 15px;
+          height: 15px;
+          display: inline-block;
+          border-radius: 50%;
+      }
+      .sold {
+          background-color: red;
+      }
+      .in-sale {
+          background-color: green;
+      }
+      .awaiting-confirmation {
+          background-color: yellow;
+      }
+      .not-completed {
+          background-color: orange;
+      }
+</style>
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="header-container">
+      <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label class="menu__btn" for="menu__toggle">
+          <span class="span-burger"></span>
+        </label>
+        <ul class="menu__box">
+          <li class="content-burger">
+            <ul class="list-header">
+              <li>
+                <a href="#!">Наши услуги</a>
+              </li>
+              <li>
+                <a href="#!">О нас</a>
+              </li>
+              <li>
+                <a href="#!">Отзывы</a>
+              </li>
+              <li>
+                <a href="#!">Новости</a>
+              </li>
+              <li>
+                <div class="header-container-tel">
+                  <p>Связаться с нами:</p>
+                  <a href="#!">+7 (999) 999 99-99</a>
+                </div>
+              </li>
+              <li>
+                <div class="header-container-social-icons">
+                  <a href="#!">
+                    <img src="/static/img/telegram.svg" alt="">
+                  </a>
+                  <a href="#!">
+                    <img src="/static/img/viber-7.svg" alt="">
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <a href="{% url 'login' %}" class="header-logo">
+        <img src="/static/img/Logo.png" alt="">
+      </a>
+      <a href="{% url 'profile_sotrudnik' team.id %}" class="header-lk">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <path d="M25.9856 5.04629C24.4653 3.40488 22.3419 2.50098 19.9981 2.50098C17.6419 2.50098 15.5114 3.39941 13.9981 5.03066C12.4684 6.67988 11.7231 8.92129 11.8981 11.3416C12.245 16.1166 15.8786 20.001 19.9981 20.001C24.1177 20.001 27.745 16.1174 28.0973 11.3432C28.2747 8.94473 27.5247 6.70801 25.9856 5.04629Z" fill="#0195E8"/>
+          <path d="M33.7504 37.5H6.25045C5.8905 37.5047 5.53403 37.4291 5.20698 37.2787C4.87993 37.1282 4.59053 36.9068 4.35982 36.6305C3.85201 36.0234 3.64732 35.1945 3.79888 34.3563C4.45826 30.6984 6.51607 27.6258 9.75045 25.4688C12.6239 23.5539 16.2637 22.5 20.0004 22.5C23.7372 22.5 27.377 23.5547 30.2504 25.4688C33.4848 27.625 35.5426 30.6977 36.202 34.3555C36.3536 35.1938 36.1489 36.0227 35.6411 36.6297C35.4104 36.9062 35.1211 37.1278 34.794 37.2783C34.467 37.4289 34.1105 37.5046 33.7504 37.5V37.5Z" fill="#0195E8"/>
+        </svg>
+        {{ team.login }}
+      </a>
+    </div>
+  </div>
+</header>
+<section class="section1-base-products">
+  <div class="container">
+    <div class="breadcrumbs">
+      <a href="{% url 'login' %}">Главная</a>
+      <p>/</p>
+      <p>
+        Заказы
+      </p>
+    </div>
+    <div class="section1-base-products-top">
+      <div>
+        <div class="section1-base-products-ellipse">
+          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <path d="M39.0715 14.5568C38.8166 14.3001 38.5133 14.0965 38.1792 13.9579C37.8451 13.8192 37.4867 13.7482 37.125 13.749H31.625V12.374C31.625 9.82131 30.6109 7.37316 28.8059 5.56812C27.0009 3.76308 24.5527 2.74902 22 2.74902C19.4473 2.74902 16.9991 3.76308 15.1941 5.56812C13.3891 7.37316 12.375 9.82131 12.375 12.374V13.749H6.875C6.14565 13.749 5.44618 14.0388 4.93046 14.5545C4.41473 15.0702 4.125 15.7697 4.125 16.499V35.0615C4.125 38.4131 6.96094 41.249 10.3125 41.249H33.6875C35.3087 41.2495 36.8657 40.6157 38.0256 39.483C38.6093 38.9262 39.0741 38.2568 39.392 37.5153C39.7099 36.7739 39.8742 35.9757 39.875 35.1689V16.499C39.8761 16.1382 39.8057 15.7808 39.6678 15.4475C39.5298 15.1141 39.3272 14.8114 39.0715 14.5568ZM15.125 12.374C15.125 10.5507 15.8493 8.80198 17.1386 7.51266C18.428 6.22335 20.1766 5.49902 22 5.49902C23.8234 5.49902 25.572 6.22335 26.8614 7.51266C28.1507 8.80198 28.875 10.5507 28.875 12.374V13.749H15.125V12.374ZM31.625 20.624C31.625 23.1767 30.6109 25.6249 28.8059 27.4299C27.0009 29.235 24.5527 30.249 22 30.249C19.4473 30.249 16.9991 29.235 15.1941 27.4299C13.3891 25.6249 12.375 23.1767 12.375 20.624V19.249C12.375 18.8843 12.5199 18.5346 12.7777 18.2768C13.0356 18.0189 13.3853 17.874 13.75 17.874C14.1147 17.874 14.4644 18.0189 14.7223 18.2768C14.9801 18.5346 15.125 18.8843 15.125 19.249V20.624C15.125 22.4474 15.8493 24.1961 17.1386 25.4854C18.428 26.7747 20.1766 27.499 22 27.499C23.8234 27.499 25.572 26.7747 26.8614 25.4854C28.1507 24.1961 28.875 22.4474 28.875 20.624V19.249C28.875 18.8843 29.0199 18.5346 29.2777 18.2768C29.5356 18.0189 29.8853 17.874 30.25 17.874C30.6147 17.874 30.9644 18.0189 31.2223 18.2768C31.4801 18.5346 31.625 18.8843 31.625 19.249V20.624Z" fill="white"/>
+          </svg>
+        </div>
+      </div>
+      <h1>Заказы</h1>
+      <span></span>
+    </div>
+    <div class="section1-base-products-content">
+      <div class="input-search input-search-orders">
+        <form method="GET" action="{% url 'orders' %}" class="input-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="39" height="40" viewBox="0 0 39 40" fill="none">
+          <path d="M34.7262 32.924L27.5718 25.5732C29.2943 23.2173 30.2241 20.3496 30.221 17.4029C30.221 9.87637 24.2612 3.75293 16.9357 3.75293C9.61022 3.75293 3.65039 9.87637 3.65039 17.4029C3.65039 24.9295 9.61022 31.0529 16.9357 31.0529C19.8036 31.0561 22.5947 30.1008 24.8877 28.3311L32.0421 35.6818C32.4043 36.0145 32.8766 36.192 33.3622 36.178C33.8477 36.1641 34.3097 35.9597 34.6532 35.6067C34.9966 35.2538 35.1956 34.7792 35.2092 34.2803C35.2228 33.7814 35.05 33.2961 34.7262 32.924V32.924ZM7.44619 17.4029C7.44619 15.4746 8.00274 13.5895 9.04546 11.9861C10.0882 10.3827 11.5702 9.13306 13.3042 8.3951C15.0382 7.65715 16.9462 7.46407 18.787 7.84027C20.6278 8.21648 22.3187 9.14508 23.6458 10.5086C24.9729 11.8722 25.8767 13.6095 26.2429 15.5008C26.609 17.3921 26.4211 19.3525 25.7029 21.1341C24.9846 22.9157 23.7683 24.4384 22.2078 25.5098C20.6472 26.5811 18.8125 27.1529 16.9357 27.1529C14.4198 27.1498 12.0079 26.1216 10.2289 24.2938C8.44996 22.466 7.44921 19.9878 7.44619 17.4029V17.4029Z" fill="#0195E8"/>
+        </svg>
+        <input type="text" name="name" placeholder="Поиск по логину или ID клиента">
+        <button type="submit">Поиск</button>
+        </form>
+    </div>
+  </div>
+</section>
+<section class="section2-base-products">
+  <div class="container">
+    <div class="section2-base-products-top">
+      <div class="section-product-page-content-selects-block section2-base-products-block-select">
+        <select>
+          <option>Все заказы</option>
+          <option>Город (9):</option>
+          <option>Город (9):</option>
+          <option>Город (9):</option>
+        </select>
+        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+          <path d="M4.5957 7.54688L10.502 13.4531L16.4082 7.54688" stroke="#0195E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="section2-base-products-container">
+      <div class="section2-base-products-filters">
+        <div class="section2-base-products-filters-block">
+          <button class="accordion">Статус (4):</button>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="checkbox">
+                <input class="custom-checkbox" type="checkbox" id="status-1" name="status" value="G">
+                <label for="status-1">
+                  <span><span style="background: #05B016;"></span></span>
+                  Продан
+                </label>
+              </div>
+              <div class="checkbox">
+                <input class="custom-checkbox" type="checkbox" id="status-3" name="status" value="O">
+                <label for="status-3">
+                  <span><span style="background: #F19305;"></span></span>
+                  Ожидает подтверждения
+                </label>
+              </div>
+              <div class="checkbox">
+                <input class="custom-checkbox" type="checkbox" id="status-4" name="status" value="R">
+                <label for="status-4">
+                  <span><span style="background: #FA4B4B;"></span></span>
+                  Не выполнен
+                </label>
+              </div>
+              <div class="checkbox">
+                <input class="custom-checkbox" type="checkbox" id="color-5" name="color-1" value="indigo">
+                <label for="color-5">
+                <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <g clip-path="url(#clip0_2356_8664)">
+                    <path d="M10 19.5C4.75182 19.5 0.5 15.2482 0.5 10C0.5 4.75182 4.75182 0.5 10 0.5C15.2482 0.5 19.5 4.75182 19.5 10C19.5 15.2482 15.2482 19.5 10 19.5Z" stroke="#4E4E4E" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 6L6 14" stroke="#4E4E4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6 6L14 14" stroke="#4E4E4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_2356_8664">
+                      <rect width="20" height="20" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+                </span>
+                  Проблемный
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section2-base-products-filters-block">
+          <button class="accordion" id="cityAccordion" data-city="">Города
+            {% regroup filtered_products|dictsort:"city" by city as city_groups %}
+            {{ city_groups|length }}
+          </button>
+          <div class="panel">
+            <div class="panel-content">
+              <form id="filterForm1" method="GET" action="{% url 'orders' %}">
+                {% regroup filtered_products|dictsort:"city" by city as city_groups %}
+                {% for group in city_groups %}
+                  <div class="checkbox">
+                    <input class="custom-checkbox selected-product" type="checkbox" id="city-{{ group.grouper }}" name="city" value="{{ group.list.0.city }}" data-name="{{ group.list.0.city }}" onchange="filterProducts1()">
+                    <label for="city-{{ group.grouper }}">
+                      {{ group.grouper }}
+                    </label>
+                  </div>
+                {% endfor %}
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="section2-base-products-filters-block">
+          <button class="accordion" id="PaymentAccordion" data-name="">Способы оплаты 
+            {% regroup filtered_products|dictsort:"payment_method" by payment_method as payment_method_groups %}
+            {{ payment_method_groups|length }}
+          </button>
+          <div class="panel">
+            <div class="panel-content">
+              <form id="filterForm2" method="GET" action="{% url 'orders' %}">
+                {% regroup filtered_products|dictsort:"payment_method" by payment_method as payment_method_groups %}
+                {% for group in payment_method_groups %}
+                  <div class="checkbox">
+                    <input class="custom-checkbox selected-product" type="checkbox" id="payment_method-{{ group.grouper }}" name="payment_method" value="{{ group.grouper }}"
+                    data-name="{{ group.grouper }}" onchange="filterProducts2()">
+                    <label for="payment_method-{{ group.grouper }}">
+                    {{ group.grouper }}
+                    </label>
+                  </div>
+                {% endfor %}
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="section2-base-products-filters-block">
+          <button class="accordion">Цена:</button>
+          <div class="panel">
+            <div class="panel-inputs">
+              <div class="panel-inputs-block">
+                <input type="number" placeholder="0">
+                <span>-</span>
+                <input type="number" placeholder="1500">
+              </div>
+              <button type="button">ОК</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section2-base-products-container-right">
+        <div class="base-products-table-block">
+          <table class="base-products-table">
+            <thead>
+            <tr>
+              <th>
+                Login или <br>
+                ID клиента
+              </th>
+              <th>№ Заказа</th>
+              <th>Дата</th>
+              <th>Информация о заказе</th>
+              <th>
+                Способ <br>
+                оплаты
+              </th>
+              <th>
+                Стоимость
+              </th>
+            </tr>
+            </thead>
+            <tbody >
+            {% for orders in filtered_products %}
+            <tr class="{% if orders.status == 'G' %}in-sale{% elif orders.status == 'O' %}not-completed{% elif orders.status == 'R' %}sold{% endif %}">
+                <td class="table-blue">
+                    <a href="{% url 'client_profile' orders.id %}">{{ orders.name }}</a>
+                </td>
+                <td class="table-blue">
+                    <a href="{% url 'orders_page' orders.id %}">{{ orders.product_id }}</a>
+                </td>
+                <td>
+                    {{ orders.date }} <br>
+                </td>
+                <td>
+                    {{ orders.city }}/{{ orders.district }}/{{ orders.name_tovar }}
+                </td>
+                <td>
+                    {{ orders.payment_method }}
+                    <br>
+                    {{ orders.payment_card }}
+                </td>
+                <td>{{ orders.cost }} ₸</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="table-pagination-base-products">
+          {% if show_pagination %}
+          <p>Показано {{ orders.start_index }} - {{ orders.end_index }} из {{ filtered_orders.count }} заказов</p>
+          <div class="table-pagination-base-products-container">
+            <div class="table-pagination-base-products-container-arr">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M10.2529 12.5015L5.75195 8.00049L10.2529 3.49951" stroke="#CCCCCC" stroke-width="1.00189" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="table-pagination-base-products-container-content">
+              {% for page_number in orders.paginator.page_range %}
+                {% if page_number == orders.number %}
+                  <span class="table-pagination-base-products-container-content-active">{{ page_number }}</span>
+                {% else %}
+                  <span><a href="?page={{ page_number }}">{{ page_number }}</a></span>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <img src="/static/img/Logo.png" alt="" class="logo-footer">
+    <div class="footer-container">
+      <div class="footer-container-left">
+        <div class="footer-container-block">
+          <h3>Магазин</h3>
+          <ul>
+            <li>
+              <a href="{% url 'team' %}">Команда</a>
+            </li>
+            <li>
+              <a href="">Клиенты</a>
+            </li>
+            <li>
+              <a href="">Платежные системы</a>
+            </li>
+            <li>
+              <a href="">Заказы</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-container-block">
+          <ul class="footer-container-block2">
+            <li>
+              <a href="{% url 'index' %}">База товаров</a>
+            </li>
+            <li>
+              <a href="">Обращения</a>
+            </li>
+            <li>
+              <a href="">Настройка страницы</a>
+            </li>
+            <li>
+              <a href="">Оформить заказ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-container-block">
+        <h3>КонтактЫ</h3>
+        <ul>
+          <li>
+            <a href="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4823 19.7902L18.483 19.7885L18.5004 19.745L21.4992 4.62592V4.57682C21.4992 4.20012 21.36 3.87126 21.0571 3.674C20.792 3.50133 20.4873 3.48904 20.2736 3.50526C20.0476 3.52241 19.8344 3.57883 19.6869 3.62579C19.611 3.64995 19.5475 3.67323 19.502 3.69083C19.4792 3.69967 19.4608 3.70717 19.4473 3.71276L19.4341 3.71831L2.71429 10.2772L2.70968 10.2789C2.70065 10.2822 2.68871 10.2866 2.67429 10.2923C2.64553 10.3034 2.60639 10.3195 2.56041 10.3403C2.47013 10.3812 2.3454 10.4444 2.21889 10.531C2.00404 10.6781 1.59493 11.0264 1.66401 11.5787C1.72123 12.0361 2.03653 12.3266 2.2491 12.477C2.36305 12.5576 2.47206 12.6157 2.55189 12.6538C2.59234 12.673 2.6267 12.6878 2.65228 12.6982C2.66511 12.7034 2.67584 12.7076 2.68414 12.7107L2.69476 12.7147L2.70156 12.7172L5.6268 13.702C5.61692 13.8856 5.63513 14.0727 5.6838 14.2573L7.14908 19.8157C7.32282 20.4748 7.91905 20.9339 8.60062 20.9334C9.21155 20.9329 9.75337 20.5633 9.98356 20.0119L12.2712 17.5658L16.2002 20.5781L16.2561 20.6025C16.6131 20.7582 16.9466 20.8076 17.2515 20.7659C17.556 20.7243 17.798 20.5966 17.9797 20.4512C18.1586 20.3081 18.2812 20.1466 18.3582 20.025C18.3974 19.9633 18.4266 19.909 18.4469 19.8681C18.457 19.8476 18.465 19.8302 18.4711 19.8167L18.4786 19.7993L18.4813 19.7928L18.4823 19.7902ZM7.1342 13.875C7.1009 13.7486 7.15318 13.6153 7.26346 13.5452L17.1855 7.24432C17.1855 7.24432 17.7691 6.89002 17.7482 7.24432C17.7482 7.24432 17.8524 7.30689 17.5396 7.59861C17.243 7.87569 10.468 14.4167 9.78242 15.0786C9.74285 15.1168 9.71923 15.1607 9.70529 15.2139L8.59948 19.4334L7.1342 13.875Z" fill="#0195E8"/>
+              </svg>
+              Telegram
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img src="/static/img/Whatsapp.svg" alt="">
+              Whatsapp
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19.875 3.74951H4.125C3.42904 3.75026 2.76179 4.02706 2.26967 4.51918C1.77755 5.0113 1.50074 5.67855 1.5 6.37451V17.6245C1.50074 18.3205 1.77755 18.9877 2.26967 19.4798C2.76179 19.972 3.42904 20.2488 4.125 20.2495H19.875C20.571 20.2488 21.2382 19.972 21.7303 19.4798C22.2225 18.9877 22.4993 18.3205 22.5 17.6245V6.37451C22.4993 5.67855 22.2225 5.0113 21.7303 4.51918C21.2382 4.02706 20.571 3.75026 19.875 3.74951ZM19.2103 8.09154L12.4603 13.3415C12.3287 13.4439 12.1667 13.4994 12 13.4994C11.8333 13.4994 11.6713 13.4439 11.5397 13.3415L4.78969 8.09154C4.71038 8.03165 4.64377 7.9566 4.59372 7.87074C4.54367 7.78489 4.51118 7.68994 4.49815 7.59142C4.48511 7.4929 4.49179 7.39277 4.51778 7.29685C4.54378 7.20093 4.58858 7.11113 4.64958 7.03268C4.71058 6.95422 4.78656 6.88867 4.87312 6.83983C4.95967 6.791 5.05506 6.75985 5.15376 6.7482C5.25245 6.73655 5.35248 6.74464 5.44802 6.77198C5.54357 6.79932 5.63272 6.84538 5.71031 6.90748L12 11.7994L18.2897 6.90748C18.447 6.78871 18.6447 6.73662 18.84 6.76247C19.0354 6.78832 19.2128 6.89004 19.3338 7.04563C19.4547 7.20122 19.5096 7.39818 19.4865 7.5939C19.4634 7.78963 19.3642 7.96839 19.2103 8.09154Z" fill="#0195E8"/>
+              </svg>
+              info@shop.kz
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

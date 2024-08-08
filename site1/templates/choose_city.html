@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Choices</title>
+</head>
+<body>
+    <form method="post" action="{% url 'update_city' %}">
+        {% csrf_token %}
+        <select name="city">
+          {% for city in cities %}
+            <option value="{{ city.id }}">{{ city.city }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Изменить город</button>
+      </form>
+</body>
+</html>
