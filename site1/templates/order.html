@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>admin</title>
-    <link rel="stylesheet" href="/static/styles/style.css">
-    <link rel="stylesheet" href="/static/styles/adaptive.css">
-    <link rel="icon" href="/static/img/icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>admin</title>
+  <link rel="stylesheet" href="/static/styles/style.css">
+  <link rel="stylesheet" href="/static/styles/adaptive.css">
+  <link rel="icon" href="/static/img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <style>
-    /*Дэфолтные настройки*/
+  /*Дэфолтные настройки*/
 * {
     box-sizing: border-box;
 }
@@ -6206,143 +6206,310 @@ footer{
 }
 </style>
 <body>
-<header>
-    <div class="container">
-        <div class="header-container">
-            <div class="header-container-left"></div>
-            <a href="{% url 'home_page' %}" class="header-logo">
-                <img src="/static/img/Logo.png" alt="">
-            </a>
-            <div class="header-container-right">
-                <a href="{% url 'profile_polz' user.id %}" class="header-lk">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                        <path d="M25.9856 5.04629C24.4653 3.40488 22.3419 2.50098 19.9981 2.50098C17.6419 2.50098 15.5114 3.39941 13.9981 5.03066C12.4684 6.67988 11.7231 8.92129 11.8981 11.3416C12.245 16.1166 15.8786 20.001 19.9981 20.001C24.1177 20.001 27.745 16.1174 28.0973 11.3432C28.2747 8.94473 27.5247 6.70801 25.9856 5.04629Z" fill="#0195E8"/>
-                        <path d="M33.7504 37.5H6.25045C5.8905 37.5047 5.53403 37.4291 5.20698 37.2787C4.87993 37.1282 4.59053 36.9068 4.35982 36.6305C3.85201 36.0234 3.64732 35.1945 3.79888 34.3563C4.45826 30.6984 6.51607 27.6258 9.75045 25.4688C12.6239 23.5539 16.2637 22.5 20.0004 22.5C23.7372 22.5 27.377 23.5547 30.2504 25.4688C33.4848 27.625 35.5426 30.6977 36.202 34.3555C36.3536 35.1938 36.1489 36.0227 35.6411 36.6297C35.4104 36.9062 35.1211 37.1278 34.794 37.2783C34.467 37.4289 34.1105 37.5046 33.7504 37.5V37.5Z" fill="#0195E8"/>
-                    </svg>
-                    {{ user.name }}
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="header-container-left"></div>
+                <a href="{% url 'home_page' %}" class="header-logo">
+                    <img src="/static/img/Logo.png" alt="">
                 </a>
-                <button class="openModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <path d="M33.136 15H28.1274L21.0024 5.5C20.886 5.34476 20.735 5.21875 20.5614 5.13197C20.3878 5.04518 20.1964 5 20.0024 5C19.8083 5 19.6169 5.04518 19.4434 5.13197C19.2698 5.21875 19.1188 5.34476 19.0024 5.5L11.8774 15H6.86879C6.19502 14.999 5.54834 15.2652 5.0706 15.7403C4.59285 16.2154 4.32305 16.8606 4.32036 17.5344C4.3189 17.7726 4.3534 18.0096 4.4227 18.2375L8.03754 30.9828C8.2726 31.8135 8.77251 32.5447 9.46125 33.0652C10.15 33.5857 10.9899 33.867 11.8532 33.8664H28.1516C29.015 33.8637 29.8543 33.5818 30.5443 33.0628C31.2343 32.5438 31.7378 31.8155 31.9797 30.9867L35.5993 18.2242C35.616 18.1638 35.628 18.1021 35.6352 18.0398L35.6766 17.6547C35.6813 17.6145 35.6837 17.5741 35.6836 17.5336C35.6807 16.8601 35.411 16.2152 34.9334 15.7403C34.4559 15.2654 33.8095 14.9992 33.136 15V15ZM20.0024 8.33359L25.0024 15H15.0024L20.0024 8.33359ZM20.0024 27.4742C19.4205 27.4714 18.8524 27.2963 18.3699 26.971C17.8874 26.6457 17.5121 26.1847 17.2913 25.6463C17.0706 25.1079 17.0142 24.5161 17.1295 23.9457C17.2447 23.3753 17.5263 22.8518 17.9388 22.4413C18.3512 22.0308 18.8761 21.7517 19.447 21.6392C20.018 21.5267 20.6094 21.5858 21.1468 21.8092C21.6842 22.0325 22.1433 22.41 22.4664 22.8941C22.7894 23.3781 22.9618 23.947 22.9618 24.5289C22.9574 25.3109 22.6437 26.0593 22.0892 26.6106C21.5346 27.162 20.7844 27.4713 20.0024 27.4711V27.4742Z" fill="#0195E8"/>
-                    </svg>
-                </button>
+                <div class="header-container-right">
+                    <a href="{% url 'profile_polz' user.id %}" class="header-lk">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M25.9856 5.04629C24.4653 3.40488 22.3419 2.50098 19.9981 2.50098C17.6419 2.50098 15.5114 3.39941 13.9981 5.03066C12.4684 6.67988 11.7231 8.92129 11.8981 11.3416C12.245 16.1166 15.8786 20.001 19.9981 20.001C24.1177 20.001 27.745 16.1174 28.0973 11.3432C28.2747 8.94473 27.5247 6.70801 25.9856 5.04629Z" fill="#0195E8"/>
+                            <path d="M33.7504 37.5H6.25045C5.8905 37.5047 5.53403 37.4291 5.20698 37.2787C4.87993 37.1282 4.59053 36.9068 4.35982 36.6305C3.85201 36.0234 3.64732 35.1945 3.79888 34.3563C4.45826 30.6984 6.51607 27.6258 9.75045 25.4688C12.6239 23.5539 16.2637 22.5 20.0004 22.5C23.7372 22.5 27.377 23.5547 30.2504 25.4688C33.4848 27.625 35.5426 30.6977 36.202 34.3555C36.3536 35.1938 36.1489 36.0227 35.6411 36.6297C35.4104 36.9062 35.1211 37.1278 34.794 37.2783C34.467 37.4289 34.1105 37.5046 33.7504 37.5V37.5Z" fill="#0195E8"/>
+                        </svg>
+                        {{ user.name }}
+                    </a>
+                    <button class="openModal" style="border: none; background: none; padding: 0; cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <path d="M33.136 15H28.1274L21.0024 5.5C20.886 5.34476 20.735 5.21875 20.5614 5.13197C20.3878 5.04518 20.1964 5 20.0024 5C19.8083 5 19.6169 5.04518 19.4434 5.13197C19.2698 5.21875 19.1188 5.34476 19.0024 5.5L11.8774 15H6.86879C6.19502 14.999 5.54834 15.2652 5.0706 15.7403C4.59285 16.2154 4.32305 16.8606 4.32036 17.5344C4.3189 17.7726 4.3534 18.0096 4.4227 18.2375L8.03754 30.9828C8.2726 31.8135 8.77251 32.5447 9.46125 33.0652C10.15 33.5857 10.9899 33.867 11.8532 33.8664H28.1516C29.015 33.8637 29.8543 33.5818 30.5443 33.0628C31.2343 32.5438 31.7378 31.8155 31.9797 30.9867L35.5993 18.2242C35.616 18.1638 35.628 18.1021 35.6352 18.0398L35.6766 17.6547C35.6813 17.6145 35.6837 17.5741 35.6836 17.5336C35.6807 16.8601 35.411 16.2152 34.9334 15.7403C34.4559 15.2654 33.8095 14.9992 33.136 15V15ZM20.0024 8.33359L25.0024 15H15.0024L20.0024 8.33359ZM20.0024 27.4742C19.4205 27.4714 18.8524 27.2963 18.3699 26.971C17.8874 26.6457 17.5121 26.1847 17.2913 25.6463C17.0706 25.1079 17.0142 24.5161 17.1295 23.9457C17.2447 23.3753 17.5263 22.8518 17.9388 22.4413C18.3512 22.0308 18.8761 21.7517 19.447 21.6392C20.018 21.5267 20.6094 21.5858 21.1468 21.8092C21.6842 22.0325 22.1433 22.41 22.4664 22.8941C22.7894 23.3781 22.9618 23.947 22.9618 24.5289C22.9574 25.3109 22.6437 26.0593 22.0892 26.6106C21.5346 27.162 20.7844 27.4713 20.0024 27.4711V27.4742Z" fill="#0195E8"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</header>
-<section class="catalog">
-    <div class="container container2">
-        <div class="section1-base-products-top">
-            <h1>Оформление заказа</h1>
-            <span></span>
-        </div>
-        <div class="maker-order-container">
-            <div class="maker-order-container-choose">
-                <div class="maker-order-container-choose-part">
-                    <h3>Выберите способ оплаты:</h3>
-
-                    <div class="maker-order-container-choose-block">
-                        {% for payment in payments %}
-                        <div class="radio">
-                            <label class="custom-radio-order">    
-                                <input type="radio" name="color" value="indigo">
-                                <span>{{ payment.Payment_Sposob }}</span>
-                            </label>
+    </header>
+    <section class="catalog">
+        <div class="container container2">
+            <div class="section1-base-products-top">
+                <h1>Оформление заказа</h1>
+                <span></span>
+            </div>
+            <div class="maker-order-container">
+                <div class="maker-order-container-choose">
+                    <div class="maker-order-container-choose-part">
+                        <h3>Выберите способ оплаты:</h3>
+    
+                        <div class="maker-order-container-choose-block">
+                            {% for payment in payments %}
+                            <div class="radio">
+                                <label class="custom-radio-order">    
+                                    <input type="radio" name="color" value="indigo">
+                                    <span>{{ payment.Payment_Sposob }}</span>
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <a href="{% url 'pay_order' %}"><button type="button" class="pay-btn-continue">Перейти к оплате</button></a>
+                </div>
+                <div class="maker-order-container-block">
+                    <h4>заказ # {{ order_number }}</h4>
+                    <div class="maker-order-container-block-content">
+                        {% for product in products %}
+                        <div class="maker-order-container-block-content-part">
+                            <div class="maker-order-container-block-content-part-left">
+                                <div class="maker-order-container-block-content-part-img">
+                                    <img src="{{ product.image }}" alt="">
+                                </div>
+                                <p>{{ product.name }}</p>
+                            </div>
+                           <span>{{ product.cost }} ₴</span>
                         </div>
                         {% endfor %}
                     </div>
-                </div>
-                <a href="{% url 'pay_order' %}"><button type="button" class="pay-btn-continue">Перейти к оплате</button></a>
-            </div>
-            <div class="maker-order-container-block">
-                <h4>заказ # {{ order_number }}</h4>
-                <div class="maker-order-container-block-content">
-                    <div class="maker-order-container-block-content-part">
-                        <div class="maker-order-container-block-content-part-left">
-                            <div class="maker-order-container-block-content-part-img">
-                                <img src="{{ product.image }}" alt="">
-                            </div>
-                            <p>{{ product.name }}</p>
+                    <div class="maker-order-container-block-bottom">
+                        <div class="maker-order-container-block-bottom-itog">
+                            <p>Итого:</p>
+                            <span>{{ total_price }} ₴</span>
                         </div>
-                       <span>{{ product.cost }} ₴</span>
-                    </div>
-                </div>
-                <div class="maker-order-container-block-bottom">
-                    <div class="maker-order-container-block-bottom-itog">
-                        <p>Итого:</p>
-                        <span>{{ total_price }} ₴</span>
                     </div>
                 </div>
             </div>
         </div>
+</section>    
+<div  id="modal__project" class="modal" data-modal="one">
+    <div class="modal-content">
+      <div class="modal-content-body">
+        <div class="modal-content-top">
+          <h3>Корзина</h3>
+          <svg class="close-modal" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <path d="M33.9744 29.999L45.1072 18.8662C45.6356 18.3388 45.9328 17.6231 45.9335 16.8765C45.9341 16.1299 45.6382 15.4137 45.1107 14.8853C44.5833 14.357 43.8676 14.0598 43.121 14.0591C42.3745 14.0585 41.6582 14.3544 41.1299 14.8818L29.9971 26.0146L18.8643 14.8818C18.3359 14.3535 17.6193 14.0566 16.8721 14.0566C16.1249 14.0566 15.4082 14.3535 14.8799 14.8818C14.3515 15.4102 14.0547 16.1268 14.0547 16.874C14.0547 17.6212 14.3515 18.3378 14.8799 18.8662L26.0127 29.999L14.8799 41.1318C14.3515 41.6602 14.0547 42.3768 14.0547 43.124C14.0547 43.8712 14.3515 44.5879 14.8799 45.1162C15.4082 45.6446 16.1249 45.9414 16.8721 45.9414C17.6193 45.9414 18.3359 45.6446 18.8643 45.1162L29.9971 33.9834L41.1299 45.1162C41.6582 45.6446 42.3749 45.9414 43.1221 45.9414C43.8693 45.9414 44.5859 45.6446 45.1143 45.1162C45.6426 44.5879 45.9395 43.8712 45.9395 43.124C45.9395 42.3768 45.6426 41.6602 45.1143 41.1318L33.9744 29.999Z" fill="#0195E8"/>
+          </svg>
+        </div>
+        <div class="modal-content-body-products">
+           {% for cart_item in cart.cartitem_set.all %}
+          <div class="basket-block">
+            <div class="basket-block-left">
+              <div class="basket-block-img">
+                <img src="{{ cart_item.product.image.url }}" alt="">
+              </div>
+              <h3>{{ cart_item.product.name }}</h3>
+            </div>
+            <div class="basket-block-right">
+              <div class="basket-block-price">
+                <p>Цена:</p>
+                <span>{{ cart_item.product.cost }} ₴</span>
+              </div>
+              <div class="dateInput">
+                <button type="button" onclick="input_val('dec','dateInput-month')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M23.4375 15.002H6.5625" stroke="#CCCCCC" stroke-width="1.00189" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <input type="input" class="dateInput-month" placeholder="{{ cart_item.quantity }}">
+                <button type="button" onclick="input_val('inc','dateInput-month')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M15 6.5625V23.4375M23.4375 15H6.5625" stroke="#4E4E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="basket-block-price">
+                <p>Сумма:</p>
+                <span>{{ cart_item.total_price }} ₴</span>
+              </div>
+              <a href="{% url 'remove_from_cart' cart_item.id %}" class="delete-basket">
+              <svg class="delete-basket" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M33.75 7.50195H26.25V5.62695C26.25 4.79815 25.9208 4.0033 25.3347 3.41724C24.7487 2.83119 23.9538 2.50195 23.125 2.50195H16.875C16.0462 2.50195 15.2513 2.83119 14.6653 3.41724C14.0792 4.0033 13.75 4.79815 13.75 5.62695V7.50195H6.25C5.91848 7.50195 5.60054 7.63365 5.36612 7.86807C5.1317 8.10249 5 8.42043 5 8.75195C5 9.08347 5.1317 9.40142 5.36612 9.63584C5.60054 9.87026 5.91848 10.002 6.25 10.002H7.57813L9.0625 33.8238C9.17344 35.9215 10.7813 37.502 12.8125 37.502H27.1875C29.2289 37.502 30.8047 35.9566 30.9375 33.8301L32.4219 10.002H33.75C34.0815 10.002 34.3995 9.87026 34.6339 9.63584C34.8683 9.40142 35 9.08347 35 8.75195C35 8.42043 34.8683 8.10249 34.6339 7.86807C34.3995 7.63365 34.0815 7.50195 33.75 7.50195ZM15.0445 32.502H15C14.6761 32.5022 14.3647 32.3766 14.1315 32.1517C13.8983 31.9268 13.7615 31.6202 13.75 31.2965L13.125 13.7965C13.1132 13.465 13.2336 13.1423 13.4596 12.8996C13.6857 12.6568 13.9989 12.5138 14.3305 12.502C14.662 12.4901 14.9846 12.6105 15.2274 12.8366C15.4702 13.0627 15.6132 13.3759 15.625 13.7074L16.25 31.2074C16.256 31.3716 16.2295 31.5353 16.1721 31.6893C16.1147 31.8432 16.0276 31.9843 15.9156 32.1046C15.8037 32.2248 15.6691 32.3218 15.5196 32.39C15.3702 32.4582 15.2087 32.4962 15.0445 32.502ZM21.25 31.252C21.25 31.5835 21.1183 31.9014 20.8839 32.1358C20.6495 32.3703 20.3315 32.502 20 32.502C19.6685 32.502 19.3505 32.3703 19.1161 32.1358C18.8817 31.9014 18.75 31.5835 18.75 31.252V13.752C18.75 13.4204 18.8817 13.1025 19.1161 12.8681C19.3505 12.6337 19.6685 12.502 20 12.502C20.3315 12.502 20.6495 12.6337 20.8839 12.8681C21.1183 13.1025 21.25 13.4204 21.25 13.752V31.252ZM23.75 7.50195H16.25V5.62695C16.2491 5.54462 16.2646 5.46292 16.2957 5.38667C16.3267 5.31041 16.3727 5.24114 16.431 5.18291C16.4892 5.12469 16.5585 5.07868 16.6347 5.04761C16.711 5.01653 16.7927 5.00101 16.875 5.00195H23.125C23.2073 5.00101 23.289 5.01653 23.3653 5.04761C23.4415 5.07868 23.5108 5.12469 23.569 5.18291C23.6273 5.24114 23.6733 5.31041 23.7043 5.38667C23.7354 5.46292 23.7509 5.54462 23.75 5.62695V7.50195ZM26.25 31.2965C26.2385 31.6202 26.1017 31.9268 25.8685 32.1517C25.6353 32.3766 25.3239 32.5022 25 32.502H24.9547C24.7906 32.4961 24.6292 32.458 24.4798 32.3898C24.3305 32.3215 24.196 32.2245 24.0841 32.1043C23.9722 31.9841 23.8851 31.843 23.8278 31.6891C23.7705 31.5352 23.744 31.3715 23.75 31.2074L24.375 13.7074C24.3808 13.5433 24.419 13.3819 24.4872 13.2325C24.5554 13.083 24.6524 12.9485 24.7726 12.8366C24.8928 12.7246 25.0339 12.6375 25.1878 12.5801C25.3417 12.5226 25.5054 12.4961 25.6695 12.502C25.8337 12.5078 25.9951 12.5459 26.1445 12.6141C26.2939 12.6824 26.4284 12.7794 26.5404 12.8996C26.6523 13.0198 26.7395 13.1608 26.7969 13.3147C26.8543 13.4686 26.8809 13.6323 26.875 13.7965L26.25 31.2965Z" fill="#0195E8"/>
+              </svg>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="modal-content-bottom">
+        <a href="">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M19.2188 6.5625L10.7812 15L19.2188 23.4375" stroke="#0195E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Вернуться к покупкам
+        </a>
+        <div class="modal-content-bottom-text">
+          <div class="modal-content-bottom-text-block">
+            <p>Итого:</p>
+            <span>{{ cart.total_price }} ₴</span>
+          </div>
+          <div class="modal-content-bottom-text-block">
+            <p>Скидка:</p>
+            <span>0 ₴</span>
+          </div>
+          <div class="modal-content-bottom-text-block">
+            <p>Всего к оплате:</p>
+            <span>{{ cart.total_price }} ₴</span>
+          </div>
+          <button type="button" class="btn-make-order">Оформить заказ</button>
+        </div>
+      </div>
     </div>
-</section>
+    <script>
+      let modal = document.getElementById("modal__project");
+      // Get the button that opens the modal
+      let btn = document.getElementsByClassName("openModal");
+      console.log()
+      // Get the <span> element that closes the modal
+      let span = document.getElementsByClassName("close-modal")[0];
+      // When the user clicks the button, open the modal
+      for(let i = 0;i < btn.length; i++)
+      {
+        let v = btn[i]
+        v.onclick = function() {
+          modal.style.display = "flex";
+        }
+      }
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+</div>
 <footer>
     <div class="container">
-        <img src="/static/img/Logo.png" alt="" class="logo-footer">
-        <div class="footer-container">
-            <div class="footer-container-left">
-                <div class="footer-container-block">
-                    <h3>Магазин</h3>
-                    <ul>
-                        <li>
-                            <a href="">Команда</a>
-                        </li>
-                        <li>
-                            <a href="">Клиенты</a>
-                        </li>
-                        <li>
-                            <a href="">Платежные системы</a>
-                        </li>
-                        <li>
-                            <a href="">Заказы</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-input">
-                <p>
-                    Подпишись, чтобы узнавать о новинках и акциях первым!
-                </p>
-                <div class="footer-input-block">
-                    <input type="text" placeholder="Введите свой E-mail">
-                    <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-  <path d="M3.75 20.001C3.75 28.9752 11.0258 36.251 20 36.251C28.9742 36.251 36.25 28.9752 36.25 20.001C36.25 11.0268 28.9742 3.75098 20 3.75098C11.0258 3.75098 3.75 11.0268 3.75 20.001ZM22.1596 20.001L15.544 13.3846C15.3195 13.1482 15.1961 12.8336 15.2003 12.5076C15.2045 12.1817 15.3358 11.8702 15.5663 11.6397C15.7968 11.4092 16.1083 11.2779 16.4342 11.2737C16.7602 11.2695 17.0749 11.3929 17.3112 11.6174L24.8112 19.1174C25.0454 19.3518 25.177 19.6696 25.177 20.001C25.177 20.3324 25.0454 20.6502 24.8112 20.8846L17.3112 28.3846C17.0749 28.6091 16.7602 28.7324 16.4342 28.7282C16.1083 28.7241 15.7968 28.5927 15.5663 28.3622C15.3358 28.1317 15.2045 27.8203 15.2003 27.4944C15.1961 27.1684 15.3195 26.8537 15.544 26.6174L22.1596 20.001Z" fill="white"/>
-</svg>
-          </span>
-                </div>
-            </div>
-            <div class="footer-container-block">
-                <h3>КонтактЫ</h3>
-                <ul>
-                    <li>
-                        <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4823 19.7902L18.483 19.7885L18.5004 19.745L21.4992 4.62592V4.57682C21.4992 4.20012 21.36 3.87126 21.0571 3.674C20.792 3.50133 20.4873 3.48904 20.2736 3.50526C20.0476 3.52241 19.8344 3.57883 19.6869 3.62579C19.611 3.64995 19.5475 3.67323 19.502 3.69083C19.4792 3.69967 19.4608 3.70717 19.4473 3.71276L19.4341 3.71831L2.71429 10.2772L2.70968 10.2789C2.70065 10.2822 2.68871 10.2866 2.67429 10.2923C2.64553 10.3034 2.60639 10.3195 2.56041 10.3403C2.47013 10.3812 2.3454 10.4444 2.21889 10.531C2.00404 10.6781 1.59493 11.0264 1.66401 11.5787C1.72123 12.0361 2.03653 12.3266 2.2491 12.477C2.36305 12.5576 2.47206 12.6157 2.55189 12.6538C2.59234 12.673 2.6267 12.6878 2.65228 12.6982C2.66511 12.7034 2.67584 12.7076 2.68414 12.7107L2.69476 12.7147L2.70156 12.7172L5.6268 13.702C5.61692 13.8856 5.63513 14.0727 5.6838 14.2573L7.14908 19.8157C7.32282 20.4748 7.91905 20.9339 8.60062 20.9334C9.21155 20.9329 9.75337 20.5633 9.98356 20.0119L12.2712 17.5658L16.2002 20.5781L16.2561 20.6025C16.6131 20.7582 16.9466 20.8076 17.2515 20.7659C17.556 20.7243 17.798 20.5966 17.9797 20.4512C18.1586 20.3081 18.2812 20.1466 18.3582 20.025C18.3974 19.9633 18.4266 19.909 18.4469 19.8681C18.457 19.8476 18.465 19.8302 18.4711 19.8167L18.4786 19.7993L18.4813 19.7928L18.4823 19.7902ZM7.1342 13.875C7.1009 13.7486 7.15318 13.6153 7.26346 13.5452L17.1855 7.24432C17.1855 7.24432 17.7691 6.89002 17.7482 7.24432C17.7482 7.24432 17.8524 7.30689 17.5396 7.59861C17.243 7.87569 10.468 14.4167 9.78242 15.0786C9.74285 15.1168 9.71923 15.1607 9.70529 15.2139L8.59948 19.4334L7.1342 13.875Z" fill="#0195E8"/>
-                            </svg>
-                            Telegram
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="/static/img/Whatsapp.svg" alt="">
-                            Whatsapp
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M19.875 3.74951H4.125C3.42904 3.75026 2.76179 4.02706 2.26967 4.51918C1.77755 5.0113 1.50074 5.67855 1.5 6.37451V17.6245C1.50074 18.3205 1.77755 18.9877 2.26967 19.4798C2.76179 19.972 3.42904 20.2488 4.125 20.2495H19.875C20.571 20.2488 21.2382 19.972 21.7303 19.4798C22.2225 18.9877 22.4993 18.3205 22.5 17.6245V6.37451C22.4993 5.67855 22.2225 5.0113 21.7303 4.51918C21.2382 4.02706 20.571 3.75026 19.875 3.74951ZM19.2103 8.09154L12.4603 13.3415C12.3287 13.4439 12.1667 13.4994 12 13.4994C11.8333 13.4994 11.6713 13.4439 11.5397 13.3415L4.78969 8.09154C4.71038 8.03165 4.64377 7.9566 4.59372 7.87074C4.54367 7.78489 4.51118 7.68994 4.49815 7.59142C4.48511 7.4929 4.49179 7.39277 4.51778 7.29685C4.54378 7.20093 4.58858 7.11113 4.64958 7.03268C4.71058 6.95422 4.78656 6.88867 4.87312 6.83983C4.95967 6.791 5.05506 6.75985 5.15376 6.7482C5.25245 6.73655 5.35248 6.74464 5.44802 6.77198C5.54357 6.79932 5.63272 6.84538 5.71031 6.90748L12 11.7994L18.2897 6.90748C18.447 6.78871 18.6447 6.73662 18.84 6.76247C19.0354 6.78832 19.2128 6.89004 19.3338 7.04563C19.4547 7.20122 19.5096 7.39818 19.4865 7.5939C19.4634 7.78963 19.3642 7.96839 19.2103 8.09154Z" fill="#0195E8"/>
-                            </svg>
-                            info@shop.kz
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      <img src="/img/Logo.png" alt="" class="logo-footer">
+      <div class="footer-container">
+        <div class="footer-container-left">
+          <div class="footer-container-block">
+            <h3>Магазин</h3>
+            <ul>
+              <li>
+                <a href="{% url 'team' %}">Команда</a>
+              </li>
+              <li>
+                <a href="{% url 'clients' %}">Клиенты</a>
+              </li>
+              <li>
+                <a href="">Платежные системы</a>
+              </li>
+              <li>
+                <a href="{% url  'orders' %}">Заказы</a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="footer-input">
+          <p>
+            Подпишись, чтобы узнавать о новинках и акциях первым!
+          </p>
+          <div class="footer-input-block">
+            <input type="text" placeholder="Введите свой E-mail">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+    <path d="M3.75 20.001C3.75 28.9752 11.0258 36.251 20 36.251C28.9742 36.251 36.25 28.9752 36.25 20.001C36.25 11.0268 28.9742 3.75098 20 3.75098C11.0258 3.75098 3.75 11.0268 3.75 20.001ZM22.1596 20.001L15.544 13.3846C15.3195 13.1482 15.1961 12.8336 15.2003 12.5076C15.2045 12.1817 15.3358 11.8702 15.5663 11.6397C15.7968 11.4092 16.1083 11.2779 16.4342 11.2737C16.7602 11.2695 17.0749 11.3929 17.3112 11.6174L24.8112 19.1174C25.0454 19.3518 25.177 19.6696 25.177 20.001C25.177 20.3324 25.0454 20.6502 24.8112 20.8846L17.3112 28.3846C17.0749 28.6091 16.7602 28.7324 16.4342 28.7282C16.1083 28.7241 15.7968 28.5927 15.5663 28.3622C15.3358 28.1317 15.2045 27.8203 15.2003 27.4944C15.1961 27.1684 15.3195 26.8537 15.544 26.6174L22.1596 20.001Z" fill="white"/>
+  </svg>
+            </span>
+          </div>
+        </div>
+        <div class="footer-container-block">
+          <h3>КонтактЫ</h3>
+          <ul>
+            <li>
+              <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4823 19.7902L18.483 19.7885L18.5004 19.745L21.4992 4.62592V4.57682C21.4992 4.20012 21.36 3.87126 21.0571 3.674C20.792 3.50133 20.4873 3.48904 20.2736 3.50526C20.0476 3.52241 19.8344 3.57883 19.6869 3.62579C19.611 3.64995 19.5475 3.67323 19.502 3.69083C19.4792 3.69967 19.4608 3.70717 19.4473 3.71276L19.4341 3.71831L2.71429 10.2772L2.70968 10.2789C2.70065 10.2822 2.68871 10.2866 2.67429 10.2923C2.64553 10.3034 2.60639 10.3195 2.56041 10.3403C2.47013 10.3812 2.3454 10.4444 2.21889 10.531C2.00404 10.6781 1.59493 11.0264 1.66401 11.5787C1.72123 12.0361 2.03653 12.3266 2.2491 12.477C2.36305 12.5576 2.47206 12.6157 2.55189 12.6538C2.59234 12.673 2.6267 12.6878 2.65228 12.6982C2.66511 12.7034 2.67584 12.7076 2.68414 12.7107L2.69476 12.7147L2.70156 12.7172L5.6268 13.702C5.61692 13.8856 5.63513 14.0727 5.6838 14.2573L7.14908 19.8157C7.32282 20.4748 7.91905 20.9339 8.60062 20.9334C9.21155 20.9329 9.75337 20.5633 9.98356 20.0119L12.2712 17.5658L16.2002 20.5781L16.2561 20.6025C16.6131 20.7582 16.9466 20.8076 17.2515 20.7659C17.556 20.7243 17.798 20.5966 17.9797 20.4512C18.1586 20.3081 18.2812 20.1466 18.3582 20.025C18.3974 19.9633 18.4266 19.909 18.4469 19.8681C18.457 19.8476 18.465 19.8302 18.4711 19.8167L18.4786 19.7993L18.4813 19.7928L18.4823 19.7902ZM7.1342 13.875C7.1009 13.7486 7.15318 13.6153 7.26346 13.5452L17.1855 7.24432C17.1855 7.24432 17.7691 6.89002 17.7482 7.24432C17.7482 7.24432 17.8524 7.30689 17.5396 7.59861C17.243 7.87569 10.468 14.4167 9.78242 15.0786C9.74285 15.1168 9.71923 15.1607 9.70529 15.2139L8.59948 19.4334L7.1342 13.875Z" fill="#0195E8"/>
+                </svg>
+                Telegram
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img src="/static/img/Whatsapp.svg" alt="">
+                Whatsapp
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M19.875 3.74951H4.125C3.42904 3.75026 2.76179 4.02706 2.26967 4.51918C1.77755 5.0113 1.50074 5.67855 1.5 6.37451V17.6245C1.50074 18.3205 1.77755 18.9877 2.26967 19.4798C2.76179 19.972 3.42904 20.2488 4.125 20.2495H19.875C20.571 20.2488 21.2382 19.972 21.7303 19.4798C22.2225 18.9877 22.4993 18.3205 22.5 17.6245V6.37451C22.4993 5.67855 22.2225 5.0113 21.7303 4.51918C21.2382 4.02706 20.571 3.75026 19.875 3.74951ZM19.2103 8.09154L12.4603 13.3415C12.3287 13.4439 12.1667 13.4994 12 13.4994C11.8333 13.4994 11.6713 13.4439 11.5397 13.3415L4.78969 8.09154C4.71038 8.03165 4.64377 7.9566 4.59372 7.87074C4.54367 7.78489 4.51118 7.68994 4.49815 7.59142C4.48511 7.4929 4.49179 7.39277 4.51778 7.29685C4.54378 7.20093 4.58858 7.11113 4.64958 7.03268C4.71058 6.95422 4.78656 6.88867 4.87312 6.83983C4.95967 6.791 5.05506 6.75985 5.15376 6.7482C5.25245 6.73655 5.35248 6.74464 5.44802 6.77198C5.54357 6.79932 5.63272 6.84538 5.71031 6.90748L12 11.7994L18.2897 6.90748C18.447 6.78871 18.6447 6.73662 18.84 6.76247C19.0354 6.78832 19.2128 6.89004 19.3338 7.04563C19.4547 7.20122 19.5096 7.39818 19.4865 7.5939C19.4634 7.78963 19.3642 7.96839 19.2103 8.09154Z" fill="#0195E8"/>
+                </svg>
+                info@shop.kz
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-</footer>
-<script src="/static/app.js"></script>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="/static/app.js"></script>
+  <script>
+    const btnNum = document.querySelectorAll('.cards-description-top-block');
+    const tab = document.querySelectorAll('.cards-description-content')
+  
+    btnNum.forEach(function (item){
+      item.addEventListener('click', function (){
+        btnNum.forEach(function (i){
+          i.classList.remove('cards-description-top-block-active')
+        })
+  
+        item.classList.add('cards-description-top-block-active')
+  
+        let tubID = item.getAttribute('data-description');
+        let tabActive = document.querySelector(tubID);
+  
+        tab.forEach(function (item){
+          item.classList.remove('cards-description-content-active')
+        })
+        tabActive.classList.add('cards-description-content-active')
+  
+      })
+    })
+  
+  
+    var swiper = new Swiper(".mySwiperPag", {
+      loop: true,
+      spaceBetween: 10,
+      slidesPerView: 3,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+    var swiper2 = new Swiper(".mySwiper2", {
+      loop: true,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      thumbs: {
+        swiper: swiper,
+      },
+    });
+  
+    function input_val(dir, elid) {
+  var inputEl = document.getElementById(elid);
+  var value = parseInt(inputEl.value, 10);
+
+  if (isNaN(value)) {
+    value = 0;
+  }
+
+  if (dir == "dec") {
+    if (value > 1) {
+      value--;
+    }
+  } else if (dir == "inc") {
+    value++;
+  }
+
+  inputEl.value = value;
+}
+  
+  </script>
 </body>
 </html>

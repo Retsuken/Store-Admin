@@ -32,15 +32,18 @@ def add_to_cart(request):
             cart = Cart.objects.create()
             request.session['cart_id'] = cart.id
 
+        # Получаем количество из POST, если оно не указано, берем 1
+        quantity = int(request.POST.get('quantity', 1)) 
+
         # Проверяем, есть ли товар в корзине
         try:
             cart_item = CartItem.objects.get(cart=cart, product=product)
-            # Если товар уже есть, увеличиваем количество
-            cart_item.quantity += 1
+            # Обновляем количество
+            cart_item.quantity += quantity
             cart_item.save()
         except CartItem.DoesNotExist:
             # Если товара нет, создаем новую запись
-            cart_item = CartItem.objects.create(cart=cart, product=product, quantity=1)
+            cart_item = CartItem.objects.create(cart=cart, product=product, quantity=quantity)
 
         # Обновляем общую сумму и количество товаров в корзине
         cart.update_total()
@@ -171,56 +174,84 @@ def pay_order(request):
 
 
 def order_polz(request):
+    cart_id = request.session.get('cart_id')
+    if cart_id:
+        cart = Cart.objects.get(id=cart_id)
+
+    user = None
     if 'user_id' in request.session:
         user = User.objects.get(pk=request.session['user_id'])
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-        product_name = request.POST.get('product_name')
-        product_image = request.POST.get('product_image')
-        product_city = request.POST.get('product_city')
-        product_district = request.POST.get('product_district')
-        product_cost = request.POST.get('product_cost')
-        quantity = int(request.POST.get('quantity', 1))
-        # Создайте экземпляр товара
-        product = Product(
-            id=product_id,
-            name=product_name,
-            image=product_image,
-            city=product_city,
-            district=product_district,
-            cost=product_cost,
-        )
-        total_price = quantity * product_cost        
-        payments = Payment.objects.all()
 
-        order = Orders.objects.create(
+    if request.method == 'POST':
+        products = []
+        
+        # Собираем данные о товарах из POST-запроса
+        product_ids = request.POST.getlist('product_id')
+        product_names = request.POST.getlist('product_name')
+        product_images = request.POST.getlist('product_image')
+        product_cities = request.POST.getlist('product_city')
+        product_districts = request.POST.getlist('product_district')
+        product_costs = request.POST.getlist('product_cost')
+        quantities = request.POST.getlist('quantity')
+
+        # Проверяем, что все списки одной длины
+
+
+        total_order_price = 0  # Инициализация общей стоимости заказа
+
+        # Собираем данные о товарах и создаем заказы
+        for i in range(len(product_ids)):
+            product_id = product_ids[i]
+            product_name = product_names[i]
+            product_image = product_images[i]
+            product_city = product_cities[i]
+            product_district = product_districts[i]
+            product_cost = float(product_costs[i])
+            quantity = int(quantities[i])
+
+            total_price_for_item = quantity * product_cost  # Расчет стоимости для текущего товара
+            total_order_price += total_price_for_item  # Добавляем к общей стоимости
+
+            # Создаем экземпляр товара
+            products.append({
+                'id': product_id,
+                'name': product_name,
+                'image': product_image,
+                'city': product_city,
+                'district': product_district,
+                'cost': product_cost,
+                'quantity': quantity,
+                'total_price': total_price_for_item  # Сохраняем стоимость для текущего товара
+            })
+
+            # Создаем заказ
+            order = Orders.objects.create(
                 name_tovar=product_name,
                 status='F',  # Установите статус "Создан"
-                name=user,  # Используйте объект User 
+                name=user,
                 product_id=product_id, 
                 date=timezone.now(),
                 city=product_city,
                 district=product_district,
-                # Добавьте обработку payment_method и payment_card, если они есть в форме
                 cost=product_cost,
-                # employee = ... (Обработайте данные о сотруднике)
                 quantity=quantity,
                 image=product_image,
-                # comment = ... (Обработайте комментарий)
             )
-  
+
+        payments = Payment.objects.all()  # Получаем все способы оплаты
+
         context = {
-            'payments': payments,
-            'product': product, 
+            'total_price': total_order_price, 
+            'products': products,
             'user': user,
-            'quantity': quantity,  # Передаем количество в контекст
-            'total_price': total_price, 
+            'cart': cart,
+            'payments': payments,
             'order_number': order.pk,
         }
         return render(request, 'order.html', context)
     else:
         payments = Payment.objects.all()
-        return render(request, 'order.html', {'payments': payments, 'user': user})
+        return render(request, 'order.html', {'payments': payments, 'user': user, 'cart': cart})
 
 
 
@@ -298,7 +329,13 @@ def home(request):
     if 'team_id' in request.session:  # Проверка team_id
         team = Team.objects.get(id=request.session['team_id'])
         access_pages = team.access_pages.all()
-        return render(request, 'statictick.html', {'team': team, 'access_pages': access_pages})
+        products = Product.objects.all()
+        total_cost = 0
+        total_quantity = 0
+        for product in products:
+            total_cost += product.cost * product.quantity
+            total_quantity += product.quantity
+        return render(request, 'statictick.html', {'team': team, 'access_pages': access_pages, 'products': products, 'total_cost': total_cost, 'total_quantity': total_quantity})
     else:
         return redirect('login')
 

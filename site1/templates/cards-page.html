@@ -6204,6 +6204,32 @@ footer{
     gap: 58px;
     justify-content: space-between;
 }
+
+#dateInput-month-product,.dateInput-month-product {
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+    border-right: 2px solid #CCC;
+    border-left: 2px solid #CCC;
+}
+
+#dateInput-month-cart,.dateInput-month-cart {
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+    border-right: 2px solid #CCC;
+    border-left: 2px solid #CCC;
+}
 </style>
 <body>
 <header>
@@ -6221,7 +6247,7 @@ footer{
           </svg>
           {{ user.name }}
         </a>
-        <button class="openModal">
+        <button class="openModal" style="border: none; background: none; padding: 0; cursor: pointer;">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
             <path d="M33.136 15H28.1274L21.0024 5.5C20.886 5.34476 20.735 5.21875 20.5614 5.13197C20.3878 5.04518 20.1964 5 20.0024 5C19.8083 5 19.6169 5.04518 19.4434 5.13197C19.2698 5.21875 19.1188 5.34476 19.0024 5.5L11.8774 15H6.86879C6.19502 14.999 5.54834 15.2652 5.0706 15.7403C4.59285 16.2154 4.32305 16.8606 4.32036 17.5344C4.3189 17.7726 4.3534 18.0096 4.4227 18.2375L8.03754 30.9828C8.2726 31.8135 8.77251 32.5447 9.46125 33.0652C10.15 33.5857 10.9899 33.867 11.8532 33.8664H28.1516C29.015 33.8637 29.8543 33.5818 30.5443 33.0628C31.2343 32.5438 31.7378 31.8155 31.9797 30.9867L35.5993 18.2242C35.616 18.1638 35.628 18.1021 35.6352 18.0398L35.6766 17.6547C35.6813 17.6145 35.6837 17.5741 35.6836 17.5336C35.6807 16.8601 35.411 16.2152 34.9334 15.7403C34.4559 15.2654 33.8095 14.9992 33.136 15V15ZM20.0024 8.33359L25.0024 15H15.0024L20.0024 8.33359ZM20.0024 27.4742C19.4205 27.4714 18.8524 27.2963 18.3699 26.971C17.8874 26.6457 17.5121 26.1847 17.2913 25.6463C17.0706 25.1079 17.0142 24.5161 17.1295 23.9457C17.2447 23.3753 17.5263 22.8518 17.9388 22.4413C18.3512 22.0308 18.8761 21.7517 19.447 21.6392C20.018 21.5267 20.6094 21.5858 21.1468 21.8092C21.6842 22.0325 22.1433 22.41 22.4664 22.8941C22.7894 23.3781 22.9618 23.947 22.9618 24.5289C22.9574 25.3109 22.6437 26.0593 22.0892 26.6106C21.5346 27.162 20.7844 27.4713 20.0024 27.4711V27.4742Z" fill="#0195E8"/>
           </svg>
@@ -6273,13 +6299,13 @@ footer{
         <h4>В наличии</h4>
         <h5>{{ product.cost }} ₴</h5>
         <div class="dateInput">
-          <button type="button" onclick="input_val('dec','dateInput-month')">
+            <button type="button" onclick="input_val('dec','dateInput-month-product')">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
               <path d="M23.4375 15.002H6.5625" stroke="#CCCCCC" stroke-width="1.00189" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <input type="input" id="dateInput-month" placeholder="1">
-          <button type="button" onclick="input_val('inc','dateInput-month')">
+          <input type="input" id="dateInput-month-product" placeholder="{{ product.quantity }}">
+          <button type="button" onclick="input_val('inc','dateInput-month-product', 'product')">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
               <path d="M15 6.5625V23.4375M23.4375 15H6.5625" stroke="#4E4E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -6289,6 +6315,7 @@ footer{
             <form action="{% url 'add_to_cart' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="product_id" value="{{ product.id }}">
+            <input type="hidden" name="quantity" id="quantity-input-product" value="1"> 
             <button type="submit" class="btn-basket">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <path d="M33.136 15H28.1274L21.0024 5.5C20.886 5.34476 20.735 5.21875 20.5614 5.13197C20.3878 5.04518 20.1964 5 20.0024 5C19.8083 5 19.6169 5.04518 19.4434 5.13197C19.2698 5.21875 19.1188 5.34476 19.0024 5.5L11.8774 15H6.86879C6.19502 14.999 5.54834 15.2652 5.0706 15.7403C4.59285 16.2154 4.32305 16.8606 4.32036 17.5344C4.3189 17.7726 4.3534 18.0096 4.4227 18.2375L8.03755 30.9828C8.2726 31.8135 8.77251 32.5447 9.46125 33.0652C10.15 33.5857 10.9899 33.867 11.8532 33.8664H28.1516C29.015 33.8637 29.8543 33.5819 30.5443 33.0628C31.2343 32.5438 31.7378 31.8155 31.9797 30.9867L35.5993 18.2242C35.616 18.1638 35.628 18.1021 35.6352 18.0398L35.6766 17.6547C35.6813 17.6145 35.6837 17.5741 35.6836 17.5336C35.6808 16.8601 35.411 16.2152 34.9334 15.7403C34.4559 15.2654 33.8095 14.9992 33.136 15V15ZM20.0024 8.33359L25.0024 15H15.0024L20.0024 8.33359ZM20.0024 27.4742C19.4205 27.4714 18.8524 27.2964 18.3699 26.971C17.8874 26.6457 17.5121 26.1848 17.2913 25.6463C17.0706 25.1079 17.0142 24.5161 17.1295 23.9457C17.2447 23.3753 17.5263 22.8518 17.9388 22.4413C18.3512 22.0308 18.8761 21.7517 19.447 21.6392C20.018 21.5267 20.6094 21.5858 21.1468 21.8092C21.6842 22.0325 22.1433 22.41 22.4664 22.8941C22.7894 23.3781 22.9618 23.947 22.9618 24.5289C22.9574 25.3109 22.6437 26.0593 22.0892 26.6106C21.5346 27.162 20.7844 27.4713 20.0024 27.4711V27.4742Z" fill="white"/>
@@ -6304,6 +6331,7 @@ footer{
                 <input type="hidden" name="product_city" value="{{ product.city }}">
                 <input type="hidden" name="product_district" value="{{ product.district }}">
                 <input type="hidden" name="product_cost" value="{{ product.cost }}">
+                <input type="hidden" name="quantity" value="{{ product.quantity }}">
                 <button type="submit" class="btn-buy-one-click">Купить в 1 клик</button>
             </form>
           </div>
@@ -6425,13 +6453,13 @@ footer{
                 <span>{{ cart_item.product.cost }} ₴</span>
               </div>
               <div class="dateInput">
-                <button type="button" onclick="input_val('dec','dateInput-month')">
+                <button type="button" onclick="input_val('dec','dateInput-month-cart')">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                     <path d="M23.4375 15.002H6.5625" stroke="#CCCCCC" stroke-width="1.00189" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </button>
-                <input type="input" class="dateInput-month" placeholder="{{ cart_item.quantity }}">
-                <button type="button" onclick="input_val('inc','dateInput-month')">
+                <input type="input" id="dateInput-month-cart" placeholder="{{ cart_item.quantity }}">
+                <button type="button" onclick="input_val('inc','dateInput-month-cart', 'cart')">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                     <path d="M15 6.5625V23.4375M23.4375 15H6.5625" stroke="#4E4E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -6471,7 +6499,19 @@ footer{
             <p>Всего к оплате:</p>
             <span>{{ cart.total_price }} ₴</span>
           </div>
-          <button type="button" class="btn-make-order">Оформить заказ</button>
+          <form method="POST" action="{% url 'order_polz' %}">
+            {% csrf_token %}
+            {% for cart_item in cart.cartitem_set.all %}
+                <input type="hidden" name="product_id" value="{{ cart_item.product.id }}">
+                <input type="hidden" name="product_name" value="{{ cart_item.product.name }}">
+                <input type="hidden" name="product_image" value="{{ cart_item.product.image.url }}">
+                <input type="hidden" name="product_city" value="{{ cart_item.product.city }}">
+                <input type="hidden" name="product_district" value="{{ cart_item.product.district }}">
+                <input type="hidden" name="product_cost" value="{{ cart_item.product.cost }}">
+                <input type="hidden" name="quantity" value="{{ cart_item.quantity }}">
+            {% endfor %}
+           <button type="submit" class="btn-make-order">Оформить заказ</button>
+           </form>
         </div>
       </div>
     </div>
@@ -6504,23 +6544,23 @@ footer{
   </div>
   <footer>
     <div class="container">
-      <img src="/img/Logo.png" alt="" class="logo-footer">
+      <img src="/static/img/Logo.png" alt="" class="logo-footer">
       <div class="footer-container">
         <div class="footer-container-left">
           <div class="footer-container-block">
             <h3>Магазин</h3>
             <ul>
               <li>
-                <a href="">Команда</a>
+                <a href="{% url 'team' %}">Команда</a>
               </li>
               <li>
-                <a href="">Клиенты</a>
+                <a href="{% url 'clients' %}">Клиенты</a>
               </li>
               <li>
                 <a href="">Платежные системы</a>
               </li>
               <li>
-                <a href="">Заказы</a>
+                <a href="{% url 'orders' %}">Заказы</a>
               </li>
             </ul>
           </div>
@@ -6551,7 +6591,7 @@ footer{
             </li>
             <li>
               <a href="">
-                <img src="/img/Whatsapp.svg" alt="">
+                <img src="/static/img/Whatsapp.svg" alt="">
                 Whatsapp
               </a>
             </li>
@@ -6613,23 +6653,26 @@ footer{
       },
     });
   
-    function input_val(dir, elid) {
-  var inputEl = document.getElementById(elid);
-  var value = parseInt(inputEl.value, 10);
+    function input_val(action, input_id, elementType) {
+  var input = document.getElementById(input_id); 
+  var quantityInput;
 
-  if (isNaN(value)) {
-    value = 0;
+  if (elementType === 'product') {
+    quantityInput = document.getElementById('quantity-input-product'); // Получаем скрытое поле для карточки товара
+  } else if (elementType === 'cart') {
+    quantityInput = document.getElementById('quantity-input-cart'); // Получаем скрытое поле для корзины
   }
 
-  if (dir == "dec") {
-    if (value > 1) {
-      value--;
-    }
-  } else if (dir == "inc") {
-    value++;
+  var currentValue = parseInt(input.value, 10) || 1; 
+
+  if (action == 'inc') {
+    currentValue++;
+  } else if (action == 'dec' && currentValue > 1) {
+    currentValue--;
   }
 
-  inputEl.value = value;
+  input.value = currentValue;
+  quantityInput.value = currentValue; // Обновляем значение в скрытом поле
 }
   
   </script>
